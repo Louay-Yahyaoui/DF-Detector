@@ -1,0 +1,3 @@
+# Retinaface uses a very old tensorflow. Download without dependencies.
+# It is still compatible with any available tensorflow.
+retina-face
