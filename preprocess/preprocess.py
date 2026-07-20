@@ -147,7 +147,7 @@ def preprocess(
     # Getting the test set video paths.
     fake_videos, real_videos = [], []
 
-    for part in range(1): #10
+    for part in range(10):
         data_part = test_data_dir / f"dfdc_train_part_0{part}" / f"dfdc_train_part_{part}"
 
         real, fake = get_paths_dfdc(data_part)
