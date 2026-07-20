@@ -117,17 +117,25 @@ def predict_video(model: torch.nn.Module, video: torch.Tensor, device: torch.dev
     show_default=True,
     help="Directory to save training plots.",
 )
+@click.option(
+    "--max-data",
+    type=int,
+    default=-1,
+    show_default=True,
+    help="Maximum test videos.",
+)
 def test(
     model_ckpt: Path,
     device: torch.device,
     data_dir: Path,
     total_frames: int,
     plot_dir: Path,
+    max_data: int,
 ):
     dtype = DTYPE
     plot_dir.mkdir(exist_ok=True, parents=True)
 
-    test_frames, y_test = load_paths_and_labels(data_dir / "test", dtype)
+    test_frames, y_test = load_paths_and_labels(data_dir / "test", dtype, total_frames=total_frames, shuffle=True, max_data=max_data)
 
     clip_normalize = transforms.Normalize(
         (0.48145466, 0.4578275, 0.40821073),
